@@ -1,4 +1,4 @@
-import java.io.File;
+    import java.io.File;
 
 public class CheckLabConfig {
 	public static void checkConfig(boolean isWindows) {
