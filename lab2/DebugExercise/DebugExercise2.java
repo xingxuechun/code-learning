@@ -51,6 +51,7 @@ public class DebugExercise2 {
                 returnArray[i] = b[i];
             }
             else {returnArray[i] = a[i];}
+//            returnArray[i] = max(a[i],b[i]);
         }
 
         return returnArray;
@@ -81,6 +82,7 @@ public class DebugExercise2 {
     public static void main(String[] args) {
         int[] a = {1, 11, -1, -11};
         int[] b = {3, -3, 2, -1};
+
 
         int sumOfElementwiseMaxes = sumOfElementwiseMaxes(a, b);
         System.out.println(sumOfElementwiseMaxes);
