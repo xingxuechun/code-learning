@@ -2,7 +2,7 @@ package deque;
 
 
 public class LinkedListDeque<T>implements Deque<T> {
-    public class Node {
+    private class Node {
         T item;
         Node prev;
         Node next;
@@ -14,8 +14,8 @@ public class LinkedListDeque<T>implements Deque<T> {
         }
     }
 
-    public Node sentinel;
-    public int size;
+    private Node sentinel;
+    private int size;
 
     public LinkedListDeque() {
         sentinel = new Node(null, null, null);
