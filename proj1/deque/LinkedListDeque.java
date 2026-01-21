@@ -1,5 +1,5 @@
 package deque;
-
+import java.util.Iterator;
 
 public class LinkedListDeque<T>implements Deque<T> {
     private class Node {
@@ -27,6 +27,26 @@ public class LinkedListDeque<T>implements Deque<T> {
     public int size() {
         return size;
     }
+
+    @Override
+    public Iterator<T> iterator(){
+        return new Iterator<T>() {
+            private Node p = sentinel.next;
+
+            @Override
+            public boolean hasNext() {
+                return p!= sentinel;
+            }
+
+            @Override
+            public T next() {
+                T item = p.item;
+                p = p.next;
+                return item;
+            }
+        };
+    }
+
 
     public void addFirst(T i) {
         Node Node1 = new Node(i,sentinel,sentinel.next);

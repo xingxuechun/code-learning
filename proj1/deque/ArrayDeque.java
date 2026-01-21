@@ -1,4 +1,5 @@
 package deque;
+import java.util.Iterator;
 
 public class ArrayDeque<T>implements Deque<T> {
     private  T[] arr;
@@ -14,6 +15,26 @@ public class ArrayDeque<T>implements Deque<T> {
         this.last = 4;
         this.length = 0;
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                return position < length;
+            }
+
+            @Override
+            public T next() {
+                T item = get(position);
+                position += 1;
+                return item;
+            }
+        };
+    }
+
 
     public void resize(int length,String action) {
         if (action.equals("up")) {
