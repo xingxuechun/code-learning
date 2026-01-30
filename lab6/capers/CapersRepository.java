@@ -1,6 +1,9 @@
 package capers;
 
 import java.io.File;
+import java.io.IOException;
+
+import static capers.Dog.DOG_FOLDER;
 import static capers.Utils.*;
 
 /** A repository for Capers 
@@ -18,20 +21,35 @@ public class CapersRepository {
     static final File CWD = new File(System.getProperty("user.dir"));
 
     /** Main metadata folder. */
-    static final File CAPERS_FOLDER = null; // TODO Hint: look at the `join`
+    static final File CAPERS_FOLDER = join(CWD, ".capers");
+    static final File STORY_FILE = join(CAPERS_FOLDER, "story");
+
+    // TODO Hint: look at the `join`
                                             //      function in Utils
 
     /**
      * Does required filesystem operations to allow for persistence.
      * (creates any necessary folders or files)
-     * Remember: recommended structure (you do not have to follow):
+     *      * Remember: recommended structure (you do not have to follow):
      *
      * .capers/ -- top level folder for all persistent data in your lab12 folder
      *    - dogs/ -- folder containing all of the persistent data for dogs
      *    - story -- file containing the current story
      */
     public static void setupPersistence() {
-        // TODO
+        if (! CAPERS_FOLDER.exists()){
+        CAPERS_FOLDER.mkdir();
+        }
+        if (! DOG_FOLDER.exists()){
+            DOG_FOLDER.mkdir();
+        }
+        if (! STORY_FILE.exists()){
+            try {
+                STORY_FILE.createNewFile();
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -40,7 +58,9 @@ public class CapersRepository {
      * @param text String of the text to be appended to the story
      */
     public static void writeStory(String text) {
-        // TODO
+        String story = readContentsAsString(STORY_FILE);
+        story += text+"\n";
+        writeContents(STORY_FILE,story);
     }
 
     /**
@@ -49,7 +69,9 @@ public class CapersRepository {
      * Also prints out the dog's information using toString().
      */
     public static void makeDog(String name, String breed, int age) {
-        // TODO
+        Dog dog = new Dog(name, breed, age);
+        dog.saveDog();
+        System.out.println(dog);
     }
 
     /**

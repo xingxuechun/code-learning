@@ -1,7 +1,10 @@
 package capers;
 
 import java.io.File;
+import java.util.Arrays;
 
+import static capers.CapersRepository.makeDog;
+import static capers.Dog.fromFile;
 import static capers.Utils.*;
 
 /** Canine Capers: A Gitlet Prelude.
@@ -49,14 +52,20 @@ public class Main {
             validateNumArgs("story", args, 2);
             text = args[1];
             CapersRepository.writeStory(text);
+            System.out.print(readContentsAsString(CapersRepository.STORY_FILE));
             break;
         case "dog":
             validateNumArgs("dog", args, 4);
             // TODO: make a dog
+            int age = Integer.parseInt(args[3]);
+            makeDog(args[1],args[2],age);
             break;
         case "birthday":
             validateNumArgs("birthday", args, 2);
             // TODO: celebrate this dog's birthday
+            Dog dog = fromFile(args[1]);
+            dog.haveBirthday();
+            dog.saveDog();
             break;
         default:
             exitWithError(String.format("Unknown command: %s", args[0]));
