@@ -204,8 +204,14 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         }
     }
 
+    public void printInOrder(){
+        for (K i : this){
+            System.out.println(i);
+        }
+    }
 
-public class Node{
+
+private class Node{
     K key;
     V value;
     Node left;
@@ -219,7 +225,7 @@ public class Node{
     }
 }
 //help funtion
-    public Node find_removemininright(Node now){
+    private Node find_removemininright(Node now){
         if (now.right.left!=null){
             now = now.right;
             while(now.left.left!= null){
@@ -234,7 +240,7 @@ public class Node{
     return result;
     }
 
-    public Node find_removemaxinleft(Node now){
+    private Node find_removemaxinleft(Node now){
         if(now.left.right!=null){
             now= now.left;
             while (now.right.right!=null){
