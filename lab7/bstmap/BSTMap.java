@@ -127,7 +127,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         }
         while (now != null) {
             if (now.key.compareTo(key) < 0) {
-                if (now.right.key.equals(key)) {
+                if (now.right != null && now.right.key.equals(key)) {
                     V result = now.right.value;
                     if (now.right.left == null && now.right.right == null) {
                         now.right = null;
@@ -151,7 +151,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
                 now = now.right;
             }
             if (now.key.compareTo(key) > 0) {
-                if (now.left.key.equals(key)) {
+                if (now.left != null && now.left.key.equals(key)) {
                     V result = now.left.value;
                     if (now.left.left == null && now.left.right == null) {
                         now.left = null;
