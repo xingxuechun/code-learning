@@ -95,7 +95,11 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
     }}
 
     public Set<K> keySet(){
-        throw new UnsupportedOperationException();
+        Set<K> set = new HashSet<>();
+        for (K i : this){
+            set.add(i);
+        }
+        return set;
     }
 
     public V remove(K key) {
@@ -103,7 +107,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
             return null;
         }
         Node now = root;
-        if (root.equals(now)) {
+        if (root.equals(now) && size == 1) {
             V result = root.value;
             root = null;
             size--;
